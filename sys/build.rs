@@ -168,6 +168,11 @@ fn main() {
         config.cxxflag("/utf-8");
     }
 
+    if cfg!(target_arch = "aarch64") {
+        config.define("GGML_NATIVE", "OFF");
+        config.define("GGML_CPU_ARM_ARCH", "native");
+    }
+
     if cfg!(feature = "coreml") {
         config.define("WHISPER_COREML", "ON");
         config.define("WHISPER_COREML_ALLOW_FALLBACK", "1");
